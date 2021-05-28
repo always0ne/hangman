@@ -1,3 +1,5 @@
+package hangman;
+
 public class HangManApplication {
 
     public static void main(String[] args) {

@@ -1,3 +1,5 @@
+package hangman;
+
 public class CountDto {
     private final int wrongCount;
     private final int successCount;
