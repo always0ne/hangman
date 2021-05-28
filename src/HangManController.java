@@ -12,11 +12,17 @@ public class HangManController {
 		initNewWord();
 	}
 
+	/*
+	 * 단어 초기화
+	 */
 	private void initNewWord() {
 		String hiddenString = hangMan.initNewWord();
 		hangManView.setHiddenText(hiddenString);
 	}
 
+	/*
+	 * 정답 확인
+	 */
 	private void submit(String submit) {
 		boolean isAnswer = hangMan.isAnswer(submit);
 		if (isAnswer) {
