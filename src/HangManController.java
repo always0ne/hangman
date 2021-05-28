@@ -1,53 +1,66 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 
 public class HangManController {
-	private final HangMan hangMan;
-	private final HangManView hangManView;
+    private final HangMan hangMan;
+    private final HangManView hangManView;
 
-	HangManController(HangMan hangMan, HangManView hangManView) {
-		this.hangMan = hangMan;
-		this.hangManView = hangManView;
-		this.hangManView.getSubmitBtn().addActionListener(new SubmitBtnListener());
-		this.hangManView.setCount(hangMan.getCount());
-		initNewWord();
-	}
+    HangManController(HangMan hangMan, HangManView hangManView) {
+        this.hangMan = hangMan;
+        this.hangManView = hangManView;
+        this.hangManView.getSubmitBtn().addActionListener(new SubmitBtnListener());
+        this.hangManView.setCount(hangMan.getCount());
+        this.hangManView.getInputField().addKeyListener(new inputFieldKeyListener());
+        initNewWord();
+    }
 
-	/*
-	 * ¥‹æÓ √ ±‚»≠
-	 */
-	private void initNewWord() {
-		String hiddenString = hangMan.initNewWord();
-		hangManView.setHiddenText(hiddenString);
-	}
+    /*
+     * Îã®Ïñ¥ Ï¥àÍ∏∞Ìôî
+     */
+    private void initNewWord() {
+        String hiddenString = hangMan.initNewWord();
+        hangManView.setHiddenText(hiddenString);
+    }
 
-	/*
-	 * ¡§¥‰ »Æ¿Œ
-	 */
-	private void submit(String submit) {
-		boolean isAnswer = hangMan.isAnswer(submit);
-		this.hangManView.setInputClear();
-		if (isAnswer) {
-			initNewWord();
-			// DO Something
-			this.hangManView.setCount(hangMan.getCount());
-		} else {
-			// DO Something
-		}
-		if (hangMan.isFail())
-			initNewWord();
-			this.hangManView.setCount(hangMan.getCount());
-		if(hangMan.isGameEnd())
-			System.out.println("∞‘¿”¿Ã ¡æ∑·µ«æ˙Ω¿¥œ¥Ÿ.");
-	}
+    /*
+     * Ï†ïÎãµ ÌôïÏù∏
+     */
+    private void submit() {
+        String text = hangManView.getInputField().getText();
+        if (hangMan.submitAndGoNextWord(text))
+            initNewWord();
+        hangManView.setCount(hangMan.getCount());
+        hangManView.clearInput();
+        if (hangMan.isGameEnd()) {
+            JOptionPane.showMessageDialog(
+                    hangManView,
+                    "Í≤åÏûÑÏùÑ Ï¢ÖÎ£åÌï©ÎãàÎã§.",
+                    "Í≤åÏûÑ ÎÅù",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            System.exit(0);
+        }
 
-	private class SubmitBtnListener implements ActionListener {
+    }
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String text = hangManView.getInputField().getText();
-			submit(text);
-		}
-	}
-	
+    private class SubmitBtnListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            submit();
+        }
+    }
+
+    private class inputFieldKeyListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                submit();
+            }
+        }
+    }
 }
