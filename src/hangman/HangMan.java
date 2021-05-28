@@ -1,3 +1,5 @@
+package hangman;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -7,9 +9,8 @@ import java.util.List;
 
 public class HangMan {
 
-    private List<String> words;
+    private final List<String> words;
     private String answer;
-    private String hiddenString;
     private int wrongCount;
     private int successCount;
     private int failCount;
@@ -21,9 +22,6 @@ public class HangMan {
         failCount = 0;
     }
 
-    /*
-     * 초기 .txt파일 불러와 리스트에 저장
-     */
     private List<String> loadWords(String path) {
         List<String> fileInputs = new ArrayList<String>();
         File file = new File(path);
@@ -34,9 +32,9 @@ public class HangMan {
 
             BufferedReader bufReader = new BufferedReader(fileReader);
             String line = "";
-            // bufferedReader�� ���������� list�� ����
+            // bufferedReader의 마지막까지 list에 넣음
             while ((line = bufReader.readLine()) != null)
-                // 2���� ���� ������� �ɷ���
+                // 2글자 이하 단허들은 걸러냄
                 if (line.length() > 2)
                     fileInputs.add(line);
             bufReader.close();
@@ -52,6 +50,7 @@ public class HangMan {
     public String initNewWord() {
         wrongCount = 0;
         answer = words.get((int) (Math.random() * words.size()));
+        System.out.println(answer); // for debug
         return generateHiddenString();
     }
 
@@ -63,9 +62,7 @@ public class HangMan {
         StringBuilder newString = new StringBuilder(answer);
         for (int i = 0; i < hiddenNum; i++)
             newString.setCharAt((int) (Math.random() * answer.length()), '-');
-        hiddenString = newString.toString();
-        System.out.println(answer);
-        return hiddenString;
+        return newString.toString();
     }
 
     /*
@@ -97,10 +94,7 @@ public class HangMan {
             return false;
     }
 
-    /*
-     * count 제공
-     */
-    public CountDto getCount() {
+    public CountDto getCounts() {
         return new CountDto(wrongCount, successCount, failCount);
     }
 }

@@ -1,8 +1,10 @@
+package hangman;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JOptionPane;
 
 
 public class HangManController {
@@ -12,29 +14,23 @@ public class HangManController {
     HangManController(HangMan hangMan, HangManView hangManView) {
         this.hangMan = hangMan;
         this.hangManView = hangManView;
-        this.hangManView.getSubmitBtn().addActionListener(new SubmitBtnListener());
-        this.hangManView.setCount(hangMan.getCount());
-        this.hangManView.getInputField().addKeyListener(new inputFieldKeyListener());
+        this.hangManView.getInputField().getSubmitBtn().addActionListener(new SubmitBtnListener());
+        this.hangManView.setCount(hangMan.getCounts());
+        this.hangManView.getInputField().getInputField().addKeyListener(new inputFieldKeyListener());
         initNewWord();
     }
 
-    /*
-     * 단어 초기화
-     */
     private void initNewWord() {
         String hiddenString = hangMan.initNewWord();
         hangManView.setHiddenText(hiddenString);
     }
 
-    /*
-     * 정답 확인
-     */
     private void submit() {
-        String text = hangManView.getInputField().getText();
+        String text = hangManView.getInputField().getInputField().getText();
         if (hangMan.submitAndGoNextWord(text))
             initNewWord();
-        hangManView.setCount(hangMan.getCount());
-        hangManView.clearInput();
+        hangManView.setCount(hangMan.getCounts());
+        hangManView.getInputField().clearInput();
         if (hangMan.isGameEnd()) {
             JOptionPane.showMessageDialog(
                     hangManView,
@@ -44,11 +40,9 @@ public class HangManController {
             );
             System.exit(0);
         }
-
     }
 
     private class SubmitBtnListener implements ActionListener {
-
         @Override
         public void actionPerformed(ActionEvent e) {
             submit();
