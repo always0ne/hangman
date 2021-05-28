@@ -27,7 +27,8 @@ public class HLabel extends JLabel{
 	}
 	
 	public void setTextFieldLabel() {
+		Border border = BorderFactory.createLineBorder(new Color(0, 0, 0, 0), 5);
+		this.setBorder(border);
 		this.setHorizontalAlignment(JLabel.RIGHT);
-		this.setForeground(new Color(0, 31, 77, 200));
 	}
 }
