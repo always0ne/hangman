@@ -23,14 +23,24 @@ public class HangManView extends JFrame {
         setTitle("HangMan");
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initHiddenText();
+        initHangManImg();
+        initScoreBoard();
+        initInputField();
+        setVisible(true);
+    }
 
+    private void initHiddenText(){
         hiddenText = new HLabel("question");
         hiddenText.setHeader();
         getContentPane().add(hiddenText, BorderLayout.NORTH);
+    }
 
+    private void initHangManImg(){
         hangman = new JPanel();
         getContentPane().add(hangman, BorderLayout.CENTER);
-
+    }
+    private void initScoreBoard(){
         JPanel side = new JPanel();
         side.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         gBag = new GridBagLayout();
@@ -61,7 +71,9 @@ public class HangManView extends JFrame {
         side.add(failCountLabel);
         side.add(wrongCountLabel);
         getContentPane().add(side, BorderLayout.EAST);
+    }
 
+    private void initInputField(){
         JPanel south = new JPanel();
         gBag = new GridBagLayout();
         south.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -78,8 +90,6 @@ public class HangManView extends JFrame {
         south.add(inputField);
         south.add(this.submitBtn);
         getContentPane().add(south, BorderLayout.SOUTH);
-
-        setVisible(true);
     }
 
     public JButton getSubmitBtn() {
@@ -101,7 +111,7 @@ public class HangManView extends JFrame {
         successCountLabel.setText(String.valueOf(dto.getSuccessCount()));
         failCountLabel.setText(String.valueOf(dto.getFailCount()));
         wrongCountLabel.setText(String.valueOf(dto.getWrongCount()));
-        setHangStep(dto.getFailCount());
+        setHangStep(dto.getWrongCount());
     }
 
     /*
