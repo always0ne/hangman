@@ -69,6 +69,7 @@ public class HangMan {
 		for (int i = 0; i < hiddenNum; i++)
 			newString.setCharAt((int) (Math.random() * answer.length()), '-');
 		hiddenString = newString.toString();
+		System.out.println(answer);
 		return hiddenString;
 	}
 
@@ -90,6 +91,7 @@ public class HangMan {
 	public boolean isFail() {
 		if (wrongCount == 5) {
 			failCount++;
+			wrongCount = 0;
 			return true;
 		} else
 			return false;
@@ -101,10 +103,21 @@ public class HangMan {
 	public boolean isAnswer(String submit) {
 		if (answer.equals(submit)) {
 			successCount++;
+			wrongCount = 0;
 			return true;
 		} else {
 			wrongCount++;
 			return false;
 		}
 	}
+	
+	/*
+	 * count Á¦°ø
+	 */
+	public int[] getCount() {
+		int[] cnt = {successCount, failCount, wrongCount};
+		return cnt;
+	}
+	
+	
 }

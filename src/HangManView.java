@@ -43,19 +43,6 @@ public class HangManView extends JFrame {
 		getContentPane().add(hiddenText, BorderLayout.NORTH);
 		
 		hangman = new JPanel();
-		BufferedImage objectImage;
-		try {
-			objectImage = ImageIO.read(new File("./resource/hang1.jpg"));
-			ImageLabel img = new ImageLabel();
-			img.setIcon(new ImageIcon(objectImage));
-			this.hangman.add(img);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block`
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		getContentPane().add(hangman, BorderLayout.CENTER);
 		
 		JPanel side = new JPanel();
@@ -66,17 +53,17 @@ public class HangManView extends JFrame {
 		HLabel success = new HLabel("success");
 		success.setAnnounce();
 		side.add(success);
-		successCountLabel = new HLabel("0");
+		successCountLabel = new HLabel("");
 		successCountLabel.setNum();
 		HLabel fail = new HLabel("fail");
 		fail.setAnnounce();
 		side.add(fail);
-		failCountLabel = new HLabel("0");
+		failCountLabel = new HLabel("");
 		failCountLabel.setNum();
 		HLabel wrong = new HLabel("wrong");
 		wrong.setAnnounce();
 		side.add(wrong);
-		wrongCountLabel = new HLabel("5");
+		wrongCountLabel = new HLabel("");
 		wrongCountLabel.setNum();
 		gbinsert(success, 0, 1, 1, 1);
 		gbinsert(fail, 0, 3, 1, 1);
@@ -125,6 +112,47 @@ public class HangManView extends JFrame {
 		return inputField;
 	}
 	
+	/*
+	 * 카운트 현재 상태로 설정
+	 */
+	public void setCount(int[] cnt) {
+		successCountLabel.setText(String.valueOf(cnt[0]));
+		failCountLabel.setText(String.valueOf(cnt[1]));
+		wrongCountLabel.setText(String.valueOf(cnt[2]));
+		setHangStep(cnt[2]);
+	}
+
+	/*
+	 * 행맨 이미지 재설정
+	 */
+	public void setHangStep(int num) {
+		try {
+			this.hangman.removeAll();
+			BufferedImage objectImage;
+			String fileName = "./resource/hang" + String.valueOf(num) + ".jpg";
+			objectImage = ImageIO.read(new File(fileName));
+			ImageLabel img = new ImageLabel();
+			img.setIcon(new ImageIcon(objectImage));
+			this.hangman.add(img);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block`
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * input 초기화
+	 */
+	public void setInputClear() {
+		this.inputField.setText("");
+	}
+	
+	/*
+	 * gbag 위치 설정
+	 */
    private void gbinsert(Component c, int x, int y, int w, int h){
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill= GridBagConstraints.BOTH;

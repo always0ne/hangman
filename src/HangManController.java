@@ -9,6 +9,7 @@ public class HangManController {
 		this.hangMan = hangMan;
 		this.hangManView = hangManView;
 		this.hangManView.getSubmitBtn().addActionListener(new SubmitBtnListener());
+		this.hangManView.setCount(hangMan.getCount());
 		initNewWord();
 	}
 
@@ -25,15 +26,17 @@ public class HangManController {
 	 */
 	private void submit(String submit) {
 		boolean isAnswer = hangMan.isAnswer(submit);
+		this.hangManView.setInputClear();
 		if (isAnswer) {
 			initNewWord();
 			// DO Something
-
+			this.hangManView.setCount(hangMan.getCount());
 		} else {
 			// DO Something
 		}
 		if (hangMan.isFail())
 			initNewWord();
+			this.hangManView.setCount(hangMan.getCount());
 		if(hangMan.isGameEnd())
 			System.out.println("게임이 종료되었습니다.");
 	}
@@ -46,4 +49,5 @@ public class HangManController {
 			submit(text);
 		}
 	}
+	
 }
