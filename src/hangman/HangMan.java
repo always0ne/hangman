@@ -13,16 +13,17 @@ public class HangMan {
     private final List<String> words;
     private String answer;
     private String maskingAnswer;
+    private final List<Integer> maskingIndex;
     private int wrongCount;
     private int successCount;
     private int failCount;
-    private boolean[] ansLetter = new boolean[26];
-    
+
     HangMan(String path) {
         words = loadWords(path);
         wrongCount = 0;
         successCount = 0;
         failCount = 0;
+        maskingIndex = new ArrayList<Integer>();
     }
 
     private List<String> loadWords(String path) {
@@ -53,59 +54,69 @@ public class HangMan {
     }
 
     private String generateHiddenString() {
-    	Arrays.fill(ansLetter, false);
         int hiddenNum = (int) (Math.random() * ((double) answer.length() * 0.3 - 1)) + 1;
         StringBuilder newString = new StringBuilder(answer);
+        maskingIndex.clear();
         for (int i = 0; i < hiddenNum; i++) {
-        	int num = (int) (Math.random() * answer.length());
-        	ansLetter[newString.charAt(num)-97] = true;
+            int num = (int) (Math.random() * answer.length());
             newString.setCharAt(num, '-');
+            maskingIndex.add(num);
         }
         maskingAnswer = newString.toString();
-        System.out.println(maskingAnswer);
         return maskingAnswer;
     }
 
-    public boolean isGameEnd() {
-        return (failCount == 3 || successCount == 10);
-    }
-    
-    public String checkPressedKey(String pressKey) {
+    public boolean checkAnswer(char pressedKey) {
+        int maskingNum = maskingIndex.size();
+        List<Integer> deleteList = new ArrayList<>();
         StringBuilder newString = new StringBuilder(maskingAnswer);
-    	for(int i = 0; i < this.answer.length(); i++) {
-    		if(answer.charAt(i) != maskingAnswer.charAt(i) && answer.charAt(i) == pressKey.charAt(0)) {
-            	ansLetter[pressKey.charAt(0)-97] = false;
-                newString.setCharAt(i, pressKey.charAt(0));
+        for (int index : maskingIndex)
+            if (answer.charAt(index) == pressedKey) {
+                newString.setCharAt(index, pressedKey);
+                deleteList.add(index);
             }
-    	}
-    	maskingAnswer = newString.toString();
-        return maskingAnswer;
-    }
-    
-    public boolean isAnswer(String pressKey) {
-    	return ansLetter[pressKey.charAt(0)-97];
+        for (int index : deleteList)
+            maskingIndex.remove(Integer.valueOf(index));
+        maskingAnswer = newString.toString();
+
+        if (maskingNum > maskingIndex.size())
+            return true;
+        else {
+            wrongCount++;
+            return false;
+        }
     }
 
-    public boolean handleRightAnswer() {
-    	if(maskingAnswer.equals(answer)) {
-	        successCount++;
-	        wrongCount = 0;
-	        return true;
-    	}else {
-    		return false;
-    	}
+    public boolean checkGoNextWord() {
+        if (answer.equals(maskingAnswer))
+            return handleRightAnswer();
+        else
+            return handleWrongAnswer();
     }
 
-    public boolean handleWrongAnswer() {
-        if (++wrongCount == 5) {
+    private boolean handleRightAnswer() {
+        successCount++;
+        wrongCount = 0;
+        return true;
+    }
+
+    private boolean handleWrongAnswer() {
+        if (wrongCount == 5) {
             failCount++;
-            wrongCount = 0;
             return true;
         } else
             return false;
     }
 
+    public boolean isGameEnd() {
+        return (failCount == 3 || successCount == 10);
+    }
+
     public CountDto getCounts() {
         return new CountDto(wrongCount, successCount, failCount);
+    }
+
+    public String getMaskingAnswer() {
+        return maskingAnswer;
     }
 }

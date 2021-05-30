@@ -11,7 +11,7 @@ public class HangManView extends JFrame {
     private final JLabel hiddenText;
     private final HangManImage hangman;
     private final KeyBoard keyBoard;
-    
+
     HangManView() {
         setTitle("hangman.HangMan");
         setSize(700, 750);
@@ -32,20 +32,29 @@ public class HangManView extends JFrame {
     }
 
     public KeyBoard getKeyBoard() {
-    	return keyBoard;
+        return keyBoard;
     }
 
-    public void setHiddenText(String str) {
-    	keyBoard.reset();
-        hiddenText.setText(str);
-    }
-    
-    public void changeHiddenText(String str) {
-        hiddenText.setText(str);
-    }
-
-    public void setCount(CountDto dto) {
-    	keyBoard.setCount(dto);
+    private void setCount(CountDto dto) {
+        keyBoard.setCount(dto);
         hangman.updateStep(dto.getWrongCount());
     }
+
+    public void initNewWord(String hiddenString, CountDto counts) {
+        keyBoard.reset();
+        hiddenText.setText(hiddenString);
+        setCount(counts);
+    }
+
+    public void updateCorrect(String maskingAnswer, JButton pressedButton, CountDto counts) {
+        hiddenText.setText(maskingAnswer);
+        getKeyBoard().setCorrectKey(pressedButton);
+        setCount(counts);
+    }
+
+    public void updateInCorrect(JButton pressedButton, CountDto counts) {
+        getKeyBoard().setWrongKey(pressedButton);
+        setCount(counts);
+    }
+
 }
