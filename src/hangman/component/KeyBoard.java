@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import hangman.CountDto;
 
@@ -22,29 +23,30 @@ public class KeyBoard extends JPanel {
     public KeyBoard() {
         gBag = new GridBagLayout();
         this.setLayout(gBag);
-        JLabel success = generateTextLabel("success");
-        add(success);
-        gbInsert(success, 0, 1, 2, 1);
-
-        successCountLabel = generateNumberLabel();
-        gbInsert(successCountLabel, 0, 2, 2, 1);
-        add(successCountLabel);
-
-        JLabel fail = generateTextLabel("fail");
-        add(fail);
-        gbInsert(fail, 0, 3, 2, 1);
-
-        failCountLabel = generateNumberLabel();
-        gbInsert(failCountLabel, 0, 4, 2, 1);
-        add(failCountLabel);
-
         for (int i = 0; i < 26; i++) {
             key[i] = new JButton(String.valueOf((char) (i + 97)));
             key[i].setFocusable(false);
-            gbInsert(key[i], i % 2, i / 2 + 5, 1, 1);
+            gbInsert(key[i], i / 2, i % 2, 1, 1);
             this.add(key[i]);
             key[i].setBackground(Color.GRAY);
         }
+        JLabel success = generateTextLabel("success");
+        success.setBorder(new EmptyBorder(5, 5, 5, 10));
+        add(success);
+        gbInsert(success, 14, 0, 3, 1);
+
+        successCountLabel = generateNumberLabel();
+        gbInsert(successCountLabel, 14, 1, 3, 1);
+        add(successCountLabel);
+
+        JLabel fail = generateTextLabel("fail");
+        fail.setBorder(new EmptyBorder(5, 5, 5, 5));
+        add(fail);
+        gbInsert(fail, 17, 0, 3, 1);
+
+        failCountLabel = generateNumberLabel();
+        gbInsert(failCountLabel, 17, 1, 3, 1);
+        add(failCountLabel);
     }
 
     public void setKeyAction(ActionListener a) {

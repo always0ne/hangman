@@ -4,6 +4,8 @@ import hangman.component.HangManImage;
 import hangman.component.KeyBoard;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
 import java.awt.*;
 
 public class HangManView extends JFrame {
@@ -14,19 +16,26 @@ public class HangManView extends JFrame {
 
     HangManView() {
         setTitle("hangman.HangMan");
-        setSize(700, 750);
+        setSize(700, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel center = new JPanel();
         hiddenText = new JLabel("question");
+        hiddenText.setFont(new Font("MS Sans Serif", Font.BOLD, 30));
         hiddenText.setHorizontalAlignment(SwingConstants.CENTER);
-        hiddenText.setBackground(new Color(0xff, 0x98, 0));
-        getContentPane().add(hiddenText, BorderLayout.NORTH);
+        hiddenText.setBackground(new Color(0xc9, 0xb5, 0x54));
+        hiddenText.setOpaque(true);
 
         hangman = new HangManImage();
-        getContentPane().add(hangman, BorderLayout.CENTER);
+        hangman.setBackground(new Color(0xc9, 0xb5, 0x54));
+        center.setBackground(new Color(0xc9, 0xb5, 0x54));
+        center.add(hiddenText);
+        center.add(hangman);
+        getContentPane().add(center, BorderLayout.CENTER);
 
         keyBoard = new KeyBoard();
-        keyBoard.setBackground(new Color(201, 181, 84));
-        getContentPane().add(keyBoard, BorderLayout.EAST);
+        keyBoard.setBackground(new Color(0xc9, 0xb5, 0x54));
+        keyBoard.setBorder(new EmptyBorder(0, 5, 20, 5));
+        getContentPane().add(keyBoard, BorderLayout.SOUTH);
         setResizable(false);
         setVisible(true);
     }
