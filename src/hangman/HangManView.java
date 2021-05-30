@@ -16,7 +16,6 @@ public class HangManView extends JFrame {
         setTitle("hangman.HangMan");
         setSize(700, 750);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         hiddenText = new JLabel("question");
         hiddenText.setHorizontalAlignment(SwingConstants.CENTER);
         hiddenText.setBackground(new Color(0xff, 0x98, 0));
@@ -26,8 +25,9 @@ public class HangManView extends JFrame {
         getContentPane().add(hangman, BorderLayout.CENTER);
 
         keyBoard = new KeyBoard();
+        keyBoard.setBackground(new Color(201, 181, 84));
         getContentPane().add(keyBoard, BorderLayout.EAST);
-
+        setResizable(false);
         setVisible(true);
     }
 
