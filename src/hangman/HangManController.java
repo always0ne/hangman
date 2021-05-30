@@ -3,20 +3,16 @@ package hangman;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 
 public class HangManController {
     private final HangMan hangMan;
     private final HangManView hangManView;
-
+    
     HangManController(HangMan hangMan, HangManView hangManView) {
         this.hangMan = hangMan;
         this.hangManView = hangManView;
-        this.hangManView.getInputField().getSubmitBtn().addActionListener(new SubmitBtnListener());
+        this.hangManView.getKeyBoard().setKeyAction(new keyBtnListener());
         this.hangManView.setCount(hangMan.getCounts());
-        this.hangManView.getInputField().getInputField().addKeyListener(new inputFieldKeyListener());
         initNewWord();
     }
 
@@ -25,36 +21,50 @@ public class HangManController {
         hangManView.setHiddenText(hiddenString);
     }
 
-    private void submit() {
-        String text = hangManView.getInputField().getInputField().getText();
-        if (hangMan.submitAndGoNextWord(text))
-            initNewWord();
+    private void pressKey(JButton pressedButton) {
+    	if(hangMan.isAnswer(pressedButton.getText())) {
+        	String text = hangMan.checkPressedKey(pressedButton.getText());	
+        	hangManView.changeHiddenText(text);
+        	hangManView.getKeyBoard().setCorrectKey(pressedButton);
+        	if(hangMan.handleRightAnswer()) {
+                JOptionPane.showMessageDialog(
+                        hangManView,
+                        "∏¬√ËΩ¿¥œ¥Ÿ. ¥Ÿ¿Ω πÆ¡¶∑Œ ≥—æÓ∞©¥œ¥Ÿ.",
+                        "πÆ¡¶ ∏¬√„",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                initNewWord();
+        	}
+    	}else {
+        	hangManView.getKeyBoard().setWrongKey(pressedButton);
+    		if(hangMan.handleWrongAnswer()) {
+                JOptionPane.showMessageDialog(
+                        hangManView,
+                        "±‚»∏∏¶ ∏µŒ º“¡¯«ﬂΩ¿¥œ¥Ÿ. ¥Ÿ¿Ω πÆ¡¶∑Œ ≥—æÓ∞©¥œ¥Ÿ.",
+                        "πÆ¡¶ ∆≤∏≤",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+                initNewWord();
+    		}
+    	}
         hangManView.setCount(hangMan.getCounts());
-        hangManView.getInputField().clearInput();
+
         if (hangMan.isGameEnd()) {
             JOptionPane.showMessageDialog(
                     hangManView,
-                    "Í≤åÏûÑÏùÑ Ï¢ÖÎ£åÌï©ÎãàÎã§.",
-                    "Í≤åÏûÑ ÎÅù",
+                    "∞‘¿”¿ª ¡æ∑·«’¥œ¥Ÿ.",
+                    "∞‘¿” ≥°",
                     JOptionPane.INFORMATION_MESSAGE
             );
             System.exit(0);
         }
     }
-
-    private class SubmitBtnListener implements ActionListener {
+    
+    private class keyBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            submit();
-        }
-    }
-
-    private class inputFieldKeyListener extends KeyAdapter {
-        @Override
-        public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                submit();
-            }
+          JButton pressedButton = (JButton) e.getSource();
+          pressKey(pressedButton);
         }
     }
 }
