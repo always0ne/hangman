@@ -75,11 +75,6 @@ public class KeyBoard extends JPanel {
         failCountLabel.setText(String.valueOf(dto.getFailCount()));
     }
 
-    public void wrong(JButton pressedButton) {
-        pressedButton.setBackground(Color.GREEN);
-        pressedButton.setEnabled(false);
-    }
-
     private JLabel generateNumberLabel() {
         JLabel label = new JLabel("");
         label.setHorizontalAlignment(SwingConstants.CENTER);

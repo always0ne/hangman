@@ -57,4 +57,10 @@ public class HangManView extends JFrame {
         setCount(counts);
     }
 
+    public void alert(String title, String message) {
+        JOptionPane.showMessageDialog(
+                this, message,
+                title, JOptionPane.INFORMATION_MESSAGE
+        );
+    }
 }
