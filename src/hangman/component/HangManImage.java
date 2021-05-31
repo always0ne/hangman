@@ -16,9 +16,9 @@ public class HangManImage extends JPanel {
         images = new ArrayList<ImageIcon>();
         for (int i = 0; i < 6; i++) {
             try {
-                BufferedImage objectImage = ImageIO.read(new File("./resource/images/hangman" + i + ".png"));
-                images.add(new ImageIcon(objectImage));
-            } catch (IOException e) {
+                ImageIcon objectImage = new ImageIcon("./resource/images/hangman" + i + ".png");
+                images.add(objectImage);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -26,7 +26,7 @@ public class HangManImage extends JPanel {
         add(image);
     }
 
-    public void updateStep(int num) {
-        image.setIcon(images.get(num));
+    public ImageIcon updateStep(int num) {
+        return images.get(num);
     }
 }
