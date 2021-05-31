@@ -14,19 +14,20 @@ public class HangManView extends JFrame {
 	private HangManButton guessPanel;
 
 	HangManView() {
-        this.setSize(1100, 800);
-        this.setTitle("Hangman");
-        this.setIconImage(new ImageIcon("images\\rope.png").getImage());
-        this.setLayout(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		this.setSize(520, 700);
+		this.setTitle("Hangman");
+		this.setIconImage(new ImageIcon("images\\rope.png").getImage());
+		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         hiddenText = "question";
         HangManQuestion hangmanPanel=new HangManQuestion(hiddenText);
         this.hangmanPanel=hangmanPanel;
-        hangmanPanel.setBounds(0, 0, 700, 800);
         HangManButton guessPanel=new HangManButton();
+        hangmanPanel.setBounds(0, 0, 510, 500);
         this.guessPanel=guessPanel;
-        guessPanel.setBounds(700, 0, 400, 800);
+        guessPanel.setBounds(0, 500, 510, 200);
 
         hangman = new HangManImage();
         this.add(this.hangman);
@@ -35,6 +36,8 @@ public class HangManView extends JFrame {
         this.add(this.guessPanel);
         this.setResizable(false);
         this.setVisible(true);
+        
+        
     }
 
     public HangManButton getKeyBoard() {
