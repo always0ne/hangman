@@ -44,7 +44,7 @@ public class HangManView extends JFrame {
         return guessPanel;
     }
 
-    private void setCount(CountDto dto) {
+    public void setCount(CountDto dto) {
     	//guessPanel.setCount(dto);
     	hangmanPanel.getSuccessCountLabel().setText(String.valueOf(dto.getSuccessCount()));
         hangmanPanel.getFailCountLabel().setText(String.valueOf(dto.getFailCount()));
@@ -52,21 +52,18 @@ public class HangManView extends JFrame {
         hangmanPanel.addLabel(s);
     }
 
-    public void initNewWord(String hiddenString, CountDto counts) {
+    public void initNewWord(String hiddenString) {
     	guessPanel.reset();
     	hangmanPanel.getStringLabel().setText(hiddenString);
-        setCount(counts);
     }
 
-    public void updateCorrect(String maskingAnswer, JButton pressedButton, CountDto counts) {
+    public void updateCorrect(String maskingAnswer, JButton pressedButton) {
     	hangmanPanel.getStringLabel().setText(maskingAnswer);
         getKeyBoard().setCorrectKey(pressedButton);
-        setCount(counts);
     }
 
-    public void updateInCorrect(JButton pressedButton, CountDto counts) {
+    public void updateInCorrect(JButton pressedButton) {
         getKeyBoard().setWrongKey(pressedButton);
-        setCount(counts);
     }
 
     public void alert(String title, String message) {

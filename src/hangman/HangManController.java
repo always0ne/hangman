@@ -16,7 +16,8 @@ public class HangManController {
     }
 
     private void initNewWord() {
-        hangManView.initNewWord(hangMan.initNewWord(), hangMan.getCounts());
+        hangManView.initNewWord(hangMan.initNewWord());
+        hangManView.setCount(hangMan.getCounts());
     }
 
     private void submitAnswer(JButton pressedButton) {
@@ -27,10 +28,14 @@ public class HangManController {
     }
 
     private void updateView(boolean correct, JButton pressedButton) {
-        if (correct)
-            hangManView.updateCorrect(hangMan.getMaskingAnswer(), pressedButton, hangMan.getCounts());
-        else
-            hangManView.updateInCorrect(pressedButton, hangMan.getCounts());
+        if (correct) {
+            hangManView.updateCorrect(hangMan.getMaskingAnswer(), pressedButton);
+            hangManView.setCount(hangMan.getCounts());
+        }
+        else {
+            hangManView.updateInCorrect(pressedButton);
+            hangManView.setCount(hangMan.getCounts());
+        }
     }
 
     private void checkGoNextWord(boolean correct) {
