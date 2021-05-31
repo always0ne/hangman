@@ -26,7 +26,7 @@ public class KeyBoard extends JPanel {
         for (int i = 0; i < 26; i++) {
             key[i] = new JButton(String.valueOf((char) (i + 97)));
             key[i].setFocusable(false);
-            gbInsert(key[i], i / 2, i % 2, 1, 1);
+            gbInsert(key[i], i % 13, i / 13, 1, 1);
             this.add(key[i]);
             key[i].setBackground(Color.GRAY);
         }
