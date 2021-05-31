@@ -46,6 +46,8 @@ public class HangManView extends JFrame {
 
     private void setCount(CountDto dto) {
     	//guessPanel.setCount(dto);
+    	hangmanPanel.getSuccessCountLabel().setText(String.valueOf(dto.getSuccessCount()));
+        hangmanPanel.getFailCountLabel().setText(String.valueOf(dto.getFailCount()));
         ImageIcon s= hangman.updateStep(dto.getWrongCount());
         hangmanPanel.addLabel(s);
     }
