@@ -1,11 +1,11 @@
 package hangman.component;
-import javax.swing.*;
 
-import hangman.CountDto;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 public class HangManButton extends JPanel {
 	public static JButton[] letters= new JButton[52];
@@ -34,10 +34,10 @@ public class HangManButton extends JPanel {
 
     public void reset() {
     	try {
-        for (int i = 0; i < 26; i++) {
-        	letters[i].setBackground(new JButton().getBackground());
-        	letters[i].setEnabled(true);
-        }
+	        for (int i = 0; i < 26; i++) {
+	        	letters[i].setBackground(new JButton().getBackground());
+	        	letters[i].setEnabled(true);
+	        }
     	}catch(NullPointerException e) {
     		
     	}
@@ -52,12 +52,11 @@ public class HangManButton extends JPanel {
         pressedButton.setBackground(Color.RED);
         pressedButton.setEnabled(false);
     }
-
-
-    private JLabel generateTextLabel(String text) {
-        JLabel label = new JLabel(text);
-        label.setHorizontalAlignment(JLabel.CENTER);
-        return label;
-    }
+//
+//    private JLabel generateTextLabel(String text) {
+//        JLabel label = new JLabel(text);
+//        label.setHorizontalAlignment(JLabel.CENTER);
+//        return label;
+//    }
 }
 

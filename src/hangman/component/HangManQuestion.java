@@ -1,9 +1,13 @@
 package hangman.component;
-import javax.swing.*;
 
-import hangman.CountDto;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 
-import java.awt.*;
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class HangManQuestion extends JPanel {
 
@@ -12,7 +16,6 @@ public class HangManQuestion extends JPanel {
     private final JLabel successCountLabel;
     private final JLabel failCountLabel;
     
-
     public HangManQuestion(String newstr) {
         this.setBackground(new Color(201, 181, 84));
         this.setOpaque(true);
