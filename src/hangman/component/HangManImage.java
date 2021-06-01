@@ -17,15 +17,14 @@ public class HangManImage extends JPanel {
             try {
                 ImageIcon objectImage = new ImageIcon("./resource/images/hangman" + i + ".png");
                 images.add(objectImage);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception ignored) {
             }
         }
         image = new JLabel(images.get(0));
         add(image);
     }
 
-    public ImageIcon updateStep(int num) {
-        return images.get(num);
+    public void updateStep(int num) {
+        image.setIcon(images.get(num));
     }
 }

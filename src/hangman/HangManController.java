@@ -33,7 +33,7 @@ public class HangManController {
             hangManView.updateCorrect(hangMan.getMaskingAnswer(), pressedButton);
 
         else
-            hangManView.updateInCorrect(pressedButton);
+            hangManView.updateWrong(pressedButton);
 
         hangManView.setCount(hangMan.getCounts());
     }

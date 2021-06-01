@@ -8,10 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class GuessPanel extends JPanel {
-	public static JButton[] letters= new JButton[52];
+    public static JButton[] letters = new JButton[52];
 
     public GuessPanel() {
-        int k=0;
+        int k = 0;
         for (char i = 'a'; i <= 'z'; i++) {
             letters[k] = new JButton(String.valueOf(i));
             letters[k].setFocusable(false);
@@ -22,25 +22,24 @@ public class GuessPanel extends JPanel {
         this.setBackground(new Color(210, 161, 26));
         this.setOpaque(true);
     }
+
     public void setKeyAction(ActionListener a) {
-    	try {
-	        for (int i = 0; i < 26; i++) {
-	        	letters[i].addActionListener(a);
-	        }
-    	}catch(NullPointerException e) {
-    		
-    	}
+        try {
+            for (int i = 0; i < 26; i++) {
+                letters[i].addActionListener(a);
+            }
+        } catch (NullPointerException ignored) {
+        }
     }
 
     public void reset() {
-    	try {
-	        for (int i = 0; i < 26; i++) {
-	        	letters[i].setBackground(new JButton().getBackground());
-	        	letters[i].setEnabled(true);
-	        }
-    	}catch(NullPointerException e) {
-    		
-    	}
+        try {
+            for (int i = 0; i < 26; i++) {
+                letters[i].setBackground(new JButton().getBackground());
+                letters[i].setEnabled(true);
+            }
+        } catch (NullPointerException ignored) {
+        }
     }
 
     public void setCorrectKey(JButton pressedButton) {
