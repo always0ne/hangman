@@ -10,61 +10,56 @@ import hangman.component.*;
 
 public class HangManView extends JFrame {
     private static final long serialVersionUID = -6149601216998660790L;
-    private String hiddenText;
-    private final HangManImage hangman;
+    private final HangManImage hangmanImage;
 
-	private HangManQuestion hangmanPanel;
-	private HangManButton guessPanel;
+	private final HangManQuestion hangmanQuestion;
+	private final GuessPanel guessPanel;
 
 	HangManView() {
 		
-		this.setSize(520, 700);
-		this.setTitle("Hangman");
-		this.setIconImage(new ImageIcon("images\\rope.png").getImage());
-		this.setLayout(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(520, 700);
+		setTitle("Hangman");
+		setIconImage(new ImageIcon("images\\rope.png").getImage());
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        hiddenText = "question";
-        HangManQuestion hangmanPanel=new HangManQuestion(hiddenText);
-        this.hangmanPanel=hangmanPanel;
-        HangManButton guessPanel=new HangManButton();
-        hangmanPanel.setBounds(0, 0, 510, 500);
-        this.guessPanel=guessPanel;
+        hangmanQuestion =new HangManQuestion( "question");
+        hangmanQuestion.setBounds(0, 0, 510, 500);
+        add(hangmanQuestion);
+
+        guessPanel=new GuessPanel();
         guessPanel.setBounds(0, 500, 510, 200);
+        add(guessPanel);
 
-        hangman = new HangManImage();
-        this.add(this.hangman);
+        hangmanImage = new HangManImage();
+        add(hangmanImage);
 
-        this.add(this.hangmanPanel);
-        this.add(this.guessPanel);
-        this.setResizable(false);
-        this.setVisible(true);
-        
+        setVisible(true);
     }
 
-    public HangManButton getKeyBoard() {
+    public GuessPanel getGuessPanel() {
         return guessPanel;
     }
 
     public void setCount(CountDto dto) {
-    	hangmanPanel.setSuccessCount(String.valueOf(dto.getSuccessCount()));
-    	hangmanPanel.setFailCount(String.valueOf(dto.getFailCount()));
+    	hangmanQuestion.setSuccessCount(String.valueOf(dto.getSuccessCount()));
+    	hangmanQuestion.setFailCount(String.valueOf(dto.getFailCount()));
 
-        hangmanPanel.addLabel(hangman.updateStep(dto.getWrongCount()));
+        hangmanQuestion.addLabel(hangmanImage.updateStep(dto.getWrongCount()));
     }
 
     public void initNewWord(String hiddenString) {
     	guessPanel.reset();
-    	hangmanPanel.setQuestion(hiddenString);
+    	hangmanQuestion.setQuestion(hiddenString);
     }
 
     public void updateCorrect(String maskingAnswer, JButton pressedButton) {
-    	hangmanPanel.setQuestion(maskingAnswer);
-        getKeyBoard().setCorrectKey(pressedButton);
+    	hangmanQuestion.setQuestion(maskingAnswer);
+        guessPanel.setCorrectKey(pressedButton);
     }
 
     public void updateInCorrect(JButton pressedButton) {
-        getKeyBoard().setWrongKey(pressedButton);
+        guessPanel.setWrongKey(pressedButton);
     }
 
     public void alert(String title, String message) {
