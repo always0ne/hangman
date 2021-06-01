@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class HangManButton extends JPanel {
+public class GuessPanel extends JPanel {
 	public static JButton[] letters= new JButton[52];
 
-    public HangManButton() {
+    public GuessPanel() {
         int k=0;
         for (char i = 'a'; i <= 'z'; i++) {
             letters[k] = new JButton(String.valueOf(i));

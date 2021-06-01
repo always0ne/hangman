@@ -11,18 +11,14 @@ import javax.swing.JPanel;
 
 public class HangManQuestion extends JPanel {
 
-    private static String wordWithHiddenLetters;
     private final JLabel question;
     private final JLabel successCountLabel;
     private final JLabel failCountLabel;
     
-    public HangManQuestion(String newstr) {
+    public HangManQuestion(String hiddenString) {
         this.setBackground(new Color(201, 181, 84));
         this.setOpaque(true);
-        StringBuilder sb = new StringBuilder();
-        sb.append(newstr);
-        wordWithHiddenLetters = sb.toString();
-        question = new JLabel(wordWithHiddenLetters);
+        question = new JLabel(hiddenString);
         question.setFont(new Font("./resource/Bold.ttf", Font.BOLD, 60)); //Comic Sans
         question.setBackground(new Color(201, 181, 84));
         question.setOpaque(true);
@@ -31,7 +27,7 @@ public class HangManQuestion extends JPanel {
         this.add(question);
         
         Box box = Box.createVerticalBox();
-        Box horibox=Box.createHorizontalBox();
+        Box horizontalBox=Box.createHorizontalBox();
         
         JLabel label1 = new JLabel("Success:");
         successCountLabel = new JLabel("10");
@@ -41,11 +37,11 @@ public class HangManQuestion extends JPanel {
 
         successCountLabel.setFont(new Font("./resource/Bold.ttf", Font.BOLD, 15));
         
-        horibox.add(label1);
-        horibox.add(successCountLabel);
+        horizontalBox.add(label1);
+        horizontalBox.add(successCountLabel);
         
 
-        Box horibox2=Box.createHorizontalBox();
+        Box horizontalBox2=Box.createHorizontalBox();
 
         JLabel label3 = new JLabel("Fail:    ");
         failCountLabel = new JLabel("10");
@@ -55,11 +51,11 @@ public class HangManQuestion extends JPanel {
        
         failCountLabel.setFont(new Font("./resource/Bold.ttf", Font.BOLD, 15));
         
-        horibox2.add(label3);
-        horibox2.add(failCountLabel);
+        horizontalBox2.add(label3);
+        horizontalBox2.add(failCountLabel);
         
-        box.add(horibox);
-        box.add(horibox2);
+        box.add(horizontalBox);
+        box.add(horizontalBox2);
 
         this.add(box);
     }

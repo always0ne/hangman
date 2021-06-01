@@ -12,7 +12,7 @@ public class HangManController {
     HangManController(HangMan hangMan, HangManView hangManView) {
         this.hangMan = hangMan;
         this.hangManView = hangManView;
-        this.hangManView.getKeyBoard().setKeyAction(new keyBtnListener());
+        this.hangManView.getGuessPanel().setKeyAction(new keyBtnListener());
         initNewWord();
     }
 
@@ -29,14 +29,13 @@ public class HangManController {
     }
 
     private void updateView(boolean correct, JButton pressedButton) {
-        if (correct) {
+        if (correct)
             hangManView.updateCorrect(hangMan.getMaskingAnswer(), pressedButton);
-            hangManView.setCount(hangMan.getCounts());
-        }
-        else {
+
+        else
             hangManView.updateInCorrect(pressedButton);
-            hangManView.setCount(hangMan.getCounts());
-        }
+
+        hangManView.setCount(hangMan.getCounts());
     }
 
     private void checkGoNextWord(boolean correct) {
