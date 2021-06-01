@@ -1,10 +1,9 @@
 package hangman.component;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,11 +13,11 @@ public class HangManImage extends JPanel {
 
     public HangManImage() {
         images = new ArrayList<ImageIcon>();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 6; i++) {
             try {
-                BufferedImage objectImage = ImageIO.read(new File("./resource/hang" + i + ".jpg"));
-                images.add(new ImageIcon(objectImage));
-            } catch (IOException e) {
+                ImageIcon objectImage = new ImageIcon("./resource/images/hangman" + i + ".png");
+                images.add(objectImage);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -26,7 +25,7 @@ public class HangManImage extends JPanel {
         add(image);
     }
 
-    public void updateStep(int num) {
-        image.setIcon(images.get(num));
+    public ImageIcon updateStep(int num) {
+        return images.get(num);
     }
 }

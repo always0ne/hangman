@@ -11,6 +11,8 @@ public class HangMan {
 
     private final List<String> words;
     private String answer;
+    private String maskingAnswer;
+    private final List<Integer> maskingIndex;
     private int wrongCount;
     private int successCount;
     private int failCount;
@@ -20,6 +22,7 @@ public class HangMan {
         wrongCount = 0;
         successCount = 0;
         failCount = 0;
+        maskingIndex = new ArrayList<Integer>();
     }
 
     private List<String> loadWords(String path) {
@@ -32,11 +35,9 @@ public class HangMan {
 
             BufferedReader bufReader = new BufferedReader(fileReader);
             String line = "";
-            // bufferedReader의 마지막까지 list에 넣음
             while ((line = bufReader.readLine()) != null)
-                // 2글자 이하 단허들은 걸러냄
                 if (line.length() > 2)
-                    fileInputs.add(line);
+                    fileInputs.add(line.toLowerCase());
             bufReader.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,9 +45,6 @@ public class HangMan {
         return fileInputs;
     }
 
-    /*
-     * 랜덤한 단어 선정
-     */
     public String initNewWord() {
         wrongCount = 0;
         answer = words.get((int) (Math.random() * words.size()));
@@ -54,26 +52,42 @@ public class HangMan {
         return generateHiddenString();
     }
 
-    /*
-     * 단어의 일부 "-"로 변경
-     */
     private String generateHiddenString() {
         int hiddenNum = (int) (Math.random() * ((double) answer.length() * 0.3 - 1)) + 1;
         StringBuilder newString = new StringBuilder(answer);
-        for (int i = 0; i < hiddenNum; i++)
-            newString.setCharAt((int) (Math.random() * answer.length()), '-');
-        return newString.toString();
+        maskingIndex.clear();
+        for (int i = 0; i < hiddenNum; i++) {
+            int num = (int) (Math.random() * answer.length());
+            newString.setCharAt(num, '-');
+            maskingIndex.add(num);
+        }
+        maskingAnswer = newString.toString();
+        return maskingAnswer;
     }
 
-    /*
-     * 게임 종료 확인
-     */
-    public boolean isGameEnd() {
-        return (failCount == 3 || successCount == 10);
+    public boolean checkAnswer(char pressedKey) {
+        int maskingNum = maskingIndex.size();
+        List<Integer> deleteList = new ArrayList<>();
+        StringBuilder newString = new StringBuilder(maskingAnswer);
+        for (int index : maskingIndex)
+            if (answer.charAt(index) == pressedKey) {
+                newString.setCharAt(index, pressedKey);
+                deleteList.add(index);
+            }
+        for (int index : deleteList)
+            maskingIndex.remove(Integer.valueOf(index));
+        maskingAnswer = newString.toString();
+
+        if (maskingNum > maskingIndex.size())
+            return true;
+        else {
+            wrongCount++;
+            return false;
+        }
     }
 
-    public boolean submitAndGoNextWord(String submit) {
-        if (answer.equals(submit))
+    public boolean checkGoNextWord() {
+        if (answer.equals(maskingAnswer))
             return handleRightAnswer();
         else
             return handleWrongAnswer();
@@ -86,15 +100,22 @@ public class HangMan {
     }
 
     private boolean handleWrongAnswer() {
-        if (++wrongCount == 5) {
+        if (wrongCount == 5) {
             failCount++;
-            wrongCount = 0;
             return true;
         } else
             return false;
     }
 
+    public boolean isGameEnd() {
+        return (failCount == 3 || successCount == 10);
+    }
+
     public CountDto getCounts() {
         return new CountDto(wrongCount, successCount, failCount);
+    }
+
+    public String getMaskingAnswer() {
+        return maskingAnswer;
     }
 }

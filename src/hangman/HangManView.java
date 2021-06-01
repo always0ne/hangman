@@ -1,51 +1,76 @@
 package hangman;
 
-import hangman.component.HangManImage;
-import hangman.component.InputBox;
-import hangman.component.ScoreBoard;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-import javax.swing.*;
-import java.awt.*;
+import hangman.component.*;
+
 
 public class HangManView extends JFrame {
     private static final long serialVersionUID = -6149601216998660790L;
-    private final JLabel hiddenText;
+    private String hiddenText;
     private final HangManImage hangman;
-    private final ScoreBoard scoreBoard;
-    private final InputBox inputBox;
 
-    HangManView() {
-        setTitle("hangman.HangMan");
-        setSize(500, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	private HangManQuestion hangmanPanel;
+	private HangManButton guessPanel;
 
-        hiddenText = new JLabel("question");
-        hiddenText.setHorizontalAlignment(SwingConstants.CENTER);
-        hiddenText.setBackground(new Color(0xff, 0x98, 0));
-        getContentPane().add(hiddenText, BorderLayout.NORTH);
+	HangManView() {
+		
+		this.setSize(520, 700);
+		this.setTitle("Hangman");
+		this.setIconImage(new ImageIcon("images\\rope.png").getImage());
+		this.setLayout(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        hiddenText = "question";
+        HangManQuestion hangmanPanel=new HangManQuestion(hiddenText);
+        this.hangmanPanel=hangmanPanel;
+        HangManButton guessPanel=new HangManButton();
+        hangmanPanel.setBounds(0, 0, 510, 500);
+        this.guessPanel=guessPanel;
+        guessPanel.setBounds(0, 500, 510, 200);
 
         hangman = new HangManImage();
-        getContentPane().add(hangman, BorderLayout.CENTER);
+        this.add(this.hangman);
 
-        scoreBoard = new ScoreBoard();
-        getContentPane().add(scoreBoard, BorderLayout.EAST);
-
-        inputBox = new InputBox();
-        getContentPane().add(inputBox, BorderLayout.SOUTH);
-
-        setVisible(true);
+        this.add(this.hangmanPanel);
+        this.add(this.guessPanel);
+        this.setResizable(false);
+        this.setVisible(true);
+        
     }
 
-    public InputBox getInputField() {
-        return inputBox;
-    }
-
-    public void setHiddenText(String str) {
-        hiddenText.setText(str);
+    public HangManButton getKeyBoard() {
+        return guessPanel;
     }
 
     public void setCount(CountDto dto) {
-        scoreBoard.setCount(dto);
-        hangman.updateStep(dto.getWrongCount());
+    	hangmanPanel.setSuccessCount(String.valueOf(dto.getSuccessCount()));
+    	hangmanPanel.setFailCount(String.valueOf(dto.getFailCount()));
+
+        hangmanPanel.addLabel(hangman.updateStep(dto.getWrongCount()));
+    }
+
+    public void initNewWord(String hiddenString) {
+    	guessPanel.reset();
+    	hangmanPanel.setQuestion(hiddenString);
+    }
+
+    public void updateCorrect(String maskingAnswer, JButton pressedButton) {
+    	hangmanPanel.setQuestion(maskingAnswer);
+        getKeyBoard().setCorrectKey(pressedButton);
+    }
+
+    public void updateInCorrect(JButton pressedButton) {
+        getKeyBoard().setWrongKey(pressedButton);
+    }
+
+    public void alert(String title, String message) {
+        JOptionPane.showMessageDialog(
+                this, message,
+                title, JOptionPane.INFORMATION_MESSAGE
+        );
     }
 }

@@ -1,11 +1,9 @@
 package hangman;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
 
 public class HangManController {
     private final HangMan hangMan;
@@ -14,47 +12,54 @@ public class HangManController {
     HangManController(HangMan hangMan, HangManView hangManView) {
         this.hangMan = hangMan;
         this.hangManView = hangManView;
-        this.hangManView.getInputField().getSubmitBtn().addActionListener(new SubmitBtnListener());
-        this.hangManView.setCount(hangMan.getCounts());
-        this.hangManView.getInputField().getInputField().addKeyListener(new inputFieldKeyListener());
+        this.hangManView.getKeyBoard().setKeyAction(new keyBtnListener());
         initNewWord();
     }
 
     private void initNewWord() {
-        String hiddenString = hangMan.initNewWord();
-        hangManView.setHiddenText(hiddenString);
+        hangManView.initNewWord(hangMan.initNewWord());
+        hangManView.setCount(hangMan.getCounts());
     }
 
-    private void submit() {
-        String text = hangManView.getInputField().getInputField().getText();
-        if (hangMan.submitAndGoNextWord(text))
+    private void submitAnswer(JButton pressedButton) {
+        boolean correct = hangMan.checkAnswer(pressedButton.getText().charAt(0));
+        updateView(correct, pressedButton);
+        checkGoNextWord(correct);
+        checkIsGameEnd();
+    }
+
+    private void updateView(boolean correct, JButton pressedButton) {
+        if (correct) {
+            hangManView.updateCorrect(hangMan.getMaskingAnswer(), pressedButton);
+            hangManView.setCount(hangMan.getCounts());
+        }
+        else {
+            hangManView.updateInCorrect(pressedButton);
+            hangManView.setCount(hangMan.getCounts());
+        }
+    }
+
+    private void checkGoNextWord(boolean correct) {
+        if (hangMan.checkGoNextWord()) {
+            if (correct)
+                hangManView.alert("πÆ¡¶ ∏¬√„", "∏¬√ËΩ¿¥œ¥Ÿ. ¥Ÿ¿Ω πÆ¡¶∑Œ ≥—æÓ∞©¥œ¥Ÿ.");
+            else
+                hangManView.alert("πÆ¡¶ ∆≤∏≤", "±‚»∏∏¶ ∏µŒ º“¡¯«ﬂΩ¿¥œ¥Ÿ. ¥Ÿ¿Ω πÆ¡¶∑Œ ≥—æÓ∞©¥œ¥Ÿ.");
             initNewWord();
-        hangManView.setCount(hangMan.getCounts());
-        hangManView.getInputField().clearInput();
+        }
+    }
+
+    private void checkIsGameEnd() {
         if (hangMan.isGameEnd()) {
-            JOptionPane.showMessageDialog(
-                    hangManView,
-                    "Í≤åÏûÑÏùÑ Ï¢ÖÎ£åÌï©ÎãàÎã§.",
-                    "Í≤åÏûÑ ÎÅù",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
+            hangManView.alert("∞‘¿” ≥°", "∞‘¿”¿ª ¡æ∑·«’¥œ¥Ÿ.");
             System.exit(0);
         }
     }
 
-    private class SubmitBtnListener implements ActionListener {
+    private class keyBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            submit();
-        }
-    }
-
-    private class inputFieldKeyListener extends KeyAdapter {
-        @Override
-        public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                submit();
-            }
+            submitAnswer((JButton) e.getSource());
         }
     }
 }
