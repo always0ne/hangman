@@ -18,7 +18,7 @@ public class HangManController {
 
     private void initNewWord() {
         hangManView.initNewWord(hangMan.initNewWord());
-        hangManView.setCount(hangMan.getCounts());
+        hangManView.updateCount(hangMan.getCounts());
     }
 
     private void submitAnswer(JButton pressedButton) {
@@ -35,7 +35,7 @@ public class HangManController {
         else
             hangManView.updateWrong(pressedButton);
 
-        hangManView.setCount(hangMan.getCounts());
+        hangManView.updateCount(hangMan.getCounts());
     }
 
     private void checkGoNextWord(boolean correct) {

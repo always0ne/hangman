@@ -53,7 +53,7 @@ public class HangManView extends JFrame {
         this.hiddenString.updateHiddenString(hiddenString);
     }
 
-    public void setCount(CountDto dto) {
+    public void updateCount(CountDto dto) {
         scoreBoard.updateScoreBoard(dto);
         hangmanImage.updateStep(dto.getWrongCount());
     }
