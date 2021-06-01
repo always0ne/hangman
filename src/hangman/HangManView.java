@@ -1,9 +1,12 @@
 package hangman;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import hangman.component.*;
 
-import javax.swing.*;
-import java.awt.*;
 
 public class HangManView extends JFrame {
     private static final long serialVersionUID = -6149601216998660790L;
@@ -37,36 +40,31 @@ public class HangManView extends JFrame {
         this.setResizable(false);
         this.setVisible(true);
         
-        
     }
 
     public HangManButton getKeyBoard() {
         return guessPanel;
     }
 
-    private void setCount(CountDto dto) {
-    	//guessPanel.setCount(dto);
-    	hangmanPanel.getSuccessCountLabel().setText(String.valueOf(dto.getSuccessCount()));
-        hangmanPanel.getFailCountLabel().setText(String.valueOf(dto.getFailCount()));
-        ImageIcon s= hangman.updateStep(dto.getWrongCount());
-        hangmanPanel.addLabel(s);
+    public void setCount(CountDto dto) {
+    	hangmanPanel.setSuccessCount(String.valueOf(dto.getSuccessCount()));
+    	hangmanPanel.setFailCount(String.valueOf(dto.getFailCount()));
+
+        hangmanPanel.addLabel(hangman.updateStep(dto.getWrongCount()));
     }
 
-    public void initNewWord(String hiddenString, CountDto counts) {
+    public void initNewWord(String hiddenString) {
     	guessPanel.reset();
-    	hangmanPanel.getStringLabel().setText(hiddenString);
-        setCount(counts);
+    	hangmanPanel.setQuestion(hiddenString);
     }
 
-    public void updateCorrect(String maskingAnswer, JButton pressedButton, CountDto counts) {
-    	hangmanPanel.getStringLabel().setText(maskingAnswer);
+    public void updateCorrect(String maskingAnswer, JButton pressedButton) {
+    	hangmanPanel.setQuestion(maskingAnswer);
         getKeyBoard().setCorrectKey(pressedButton);
-        setCount(counts);
     }
 
-    public void updateInCorrect(JButton pressedButton, CountDto counts) {
+    public void updateInCorrect(JButton pressedButton) {
         getKeyBoard().setWrongKey(pressedButton);
-        setCount(counts);
     }
 
     public void alert(String title, String message) {
