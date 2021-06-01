@@ -52,11 +52,6 @@ public class HangManButton extends JPanel {
         pressedButton.setBackground(Color.RED);
         pressedButton.setEnabled(false);
     }
-//
-//    private JLabel generateTextLabel(String text) {
-//        JLabel label = new JLabel(text);
-//        label.setHorizontalAlignment(JLabel.CENTER);
-//        return label;
-//    }
+
 }
 

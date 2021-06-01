@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 public class HangManQuestion extends JPanel {
 
     private static String wordWithHiddenLetters;
-    private static JLabel jLabel;
+    private final JLabel question;
     private final JLabel successCountLabel;
     private final JLabel failCountLabel;
     
@@ -22,13 +22,13 @@ public class HangManQuestion extends JPanel {
         StringBuilder sb = new StringBuilder();
         sb.append(newstr);
         wordWithHiddenLetters = sb.toString();
-        jLabel = new JLabel(wordWithHiddenLetters);
-        jLabel.setFont(new Font("./resource/Bold.ttf", Font.BOLD, 60)); //Comic Sans
-        jLabel.setBackground(new Color(201, 181, 84));
-        jLabel.setOpaque(true);
-        jLabel.setVerticalTextPosition(JLabel.TOP);
-        jLabel.setHorizontalTextPosition(JLabel.CENTER);
-        this.add(jLabel);
+        question = new JLabel(wordWithHiddenLetters);
+        question.setFont(new Font("./resource/Bold.ttf", Font.BOLD, 60)); //Comic Sans
+        question.setBackground(new Color(201, 181, 84));
+        question.setOpaque(true);
+        question.setVerticalTextPosition(JLabel.TOP);
+        question.setHorizontalTextPosition(JLabel.CENTER);
+        this.add(question);
         
         Box box = Box.createVerticalBox();
         Box horibox=Box.createHorizontalBox();
@@ -63,16 +63,20 @@ public class HangManQuestion extends JPanel {
 
         this.add(box);
     }
-    public JLabel getStringLabel() {
-    	return jLabel;
+
+    public void setQuestion(String q) {
+    	this.question.setText(q);
     }
-    public JLabel getSuccessCountLabel() {
-    	return successCountLabel;
+
+    public void setSuccessCount(String cnt) {
+    	this.successCountLabel.setText(cnt);
     }
-    public JLabel getFailCountLabel() {
-    	return failCountLabel;
+    
+    public void setFailCount(String cnt) {
+    	this.failCountLabel.setText(cnt);
     }
+
     public void addLabel(ImageIcon icon) {
-    	this.jLabel.setIcon(icon);
+    	this.question.setIcon(icon);
     }
 }
