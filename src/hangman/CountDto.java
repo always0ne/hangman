@@ -6,11 +6,11 @@ public class CountDto {
     private final int failCount;
 
     /***
-     * ì ìˆ˜ ì •ë³´ë¥¼ ì „ì†¡í•˜ëŠ”ë° ì‚¬ìš©í•˜ëŠ” ê°ì²´ì´ë‹¤.
-     * ëª¨ë“  ì •ë³´ëŠ” ìƒì„±ë˜ëŠ” ìˆœê°„ ë¶ˆë³€ì´ë©°, getterë¥¼ í†µí•´ ì ‘ê·¼í• ìˆ˜ë°–ì— ì—†ë‹¤.
-     * @param wrongCount í‹€ë¦° íšŸìˆ˜
-     * @param successCount ì„±ê³µí•œ íšŸìˆ˜
-     * @param failCount ì‹¤íŒ¨í•œ íšŸìˆ˜ã„´
+     * Á¡¼ö Á¤º¸¸¦ Àü¼ÛÇÏ´Âµ¥ »ç¿ëÇÏ´Â °´Ã¼ÀÌ´Ù.
+     * ¸ğµç Á¤º¸´Â »ı¼ºµÇ´Â ¼ø°£ ºÒº¯ÀÌ¸ç, getter¸¦ ÅëÇØ Á¢±ÙÇÒ¼ö¹Û¿¡ ¾ø´Ù.
+     * @param wrongCount Æ²¸° È½¼ö
+     * @param successCount ¼º°øÇÑ È½¼ö
+     * @param failCount ½ÇÆĞÇÑ È½¼ö¤¤
      */
     CountDto(int wrongCount, int successCount, int failCount) {
         this.wrongCount = wrongCount;

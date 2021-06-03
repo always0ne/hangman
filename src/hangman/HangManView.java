@@ -17,12 +17,12 @@ public class HangManView extends JFrame {
     private final GuessPanel guessPanel;
 
     /***
-     * HangMan ê²Œì„ì˜ í™”ë©´ì„ ë‹´ë‹¹í•œë‹¤.
-     * ìƒì„±ìì—ì„œëŠ” í™”ë©´ì„ êµ¬ì„±í•˜ëŠ”ë° í•„ìš”í•œ ìš”ì†Œë“¤ì„ ì´ˆê¸°í™” í•˜ëŠ” ê³¼ì •ì„ ê±°ì¹œë‹¤.
-     * HiddenStringê°ì²´ëŠ” ë¬¸ì œ ë¬¸ìì—´ì„ í‘œì‹œ
-     * HangManImage ê°ì²´ëŠ” ì´ë¯¸ì§€ë¥¼ í‘œì‹œ
-     * ScoreBoard ê°ì²´ëŠ” ì ìˆ˜íŒì„ í‘œì‹œ
-     * GuessPanelì€ í‚¤ ì…ë ¥ì„ ë°›ëŠ” ë¶€ë¶„ì„ í‘œì‹œí•œë‹¤.
+     * HangMan °ÔÀÓÀÇ È­¸éÀ» ´ã´çÇÑ´Ù.
+     * »ı¼ºÀÚ¿¡¼­´Â È­¸éÀ» ±¸¼ºÇÏ´Âµ¥ ÇÊ¿äÇÑ ¿ä¼ÒµéÀ» ÃÊ±âÈ­ ÇÏ´Â °úÁ¤À» °ÅÄ£´Ù.
+     * HiddenString°´Ã¼´Â ¹®Á¦ ¹®ÀÚ¿­À» Ç¥½Ã
+     * HangManImage °´Ã¼´Â ÀÌ¹ÌÁö¸¦ Ç¥½Ã
+     * ScoreBoard °´Ã¼´Â Á¡¼öÆÇÀ» Ç¥½Ã
+     * GuessPanelÀº Å° ÀÔ·ÂÀ» ¹Ş´Â ºÎºĞÀ» Ç¥½ÃÇÑ´Ù.
      */
     HangManView() {
         setSize(520, 700);
@@ -53,17 +53,17 @@ public class HangManView extends JFrame {
     }
 
     /***
-     * í‚¤ ì…ë ¥ì˜ ì´ë²¤íŠ¸ë¦¬ìŠ¤ë„ˆë¥¼ ì»¨íŠ¸ë¡¤ëŸ¬ì—ì„œ ë“±ë¡í•˜ê¸° ìœ„í•´ ìƒì„±í•œ getter ì´ë‹¤.
-     * @return í‚¤ ì…ë ¥ ë°›ëŠ” íŒ¨ë„
+     * Å° ÀÔ·ÂÀÇ ÀÌº¥Æ®¸®½º³Ê¸¦ ÄÁÆ®·Ñ·¯¿¡¼­ µî·ÏÇÏ±â À§ÇØ »ı¼ºÇÑ getter ÀÌ´Ù.
+     * @return Å° ÀÔ·Â ¹Ş´Â ÆĞ³Î
      */
     public GuessPanel getGuessPanel() {
         return guessPanel;
     }
 
     /***
-     * ìƒˆë¡œìš´ ë‹¨ì–´ê°€ ì´ˆê¸°í™”ë ë•Œ í™”ë©´ì„ ìƒˆë¡œ ê·¸ë¦¬ëŠ” ê¸°ëŠ¥ì„ í•œë‹¤.
-     * í‚¤ ì…ë ¥ì„ ë°›ëŠ” guessPanelì˜ ìƒíƒœë¥¼ ì „ë¶€ ì´ˆê¸°í™” í•œ í›„, ë¬¸ìì—´ì„ ì—…ë°ì´íŠ¸ í•œë‹¤.
-     * @param hiddenString ë‹¨ì–´ê°€ ìˆ¨ê²¨ì§„ ë¬¸ìì—´
+     * »õ·Î¿î ´Ü¾î°¡ ÃÊ±âÈ­µÉ¶§ È­¸éÀ» »õ·Î ±×¸®´Â ±â´ÉÀ» ÇÑ´Ù.
+     * Å° ÀÔ·ÂÀ» ¹Ş´Â guessPanelÀÇ »óÅÂ¸¦ ÀüºÎ ÃÊ±âÈ­ ÇÑ ÈÄ, ¹®ÀÚ¿­À» ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+     * @param hiddenString ´Ü¾î°¡ ¼û°ÜÁø ¹®ÀÚ¿­
      */
     public void initNewWord(String hiddenString) {
         guessPanel.reset();
@@ -71,9 +71,9 @@ public class HangManView extends JFrame {
     }
 
     /***
-     * ì¹´ìš´íŠ¸ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
-     * ì ‘ìˆ˜íŒì— ì ìˆ˜ë¥¼ ì—…ë°ì´íŠ¸ ìš”ì²­ì„ í•œ í›„, ì´ë¯¸ì§€ ë³€ê²½ ìš”ì²­ì„ í•œë‹¤.
-     * @param dto ì¹´ìš´íŠ¸ ì •ë³´ë¥¼ ê°€ì§€ê³  ìˆëŠ” Data Transfer Object
+     * Ä«¿îÆ® Á¤º¸¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+     * Á¢¼öÆÇ¿¡ Á¡¼ö¸¦ ¾÷µ¥ÀÌÆ® ¿äÃ»À» ÇÑ ÈÄ, ÀÌ¹ÌÁö º¯°æ ¿äÃ»À» ÇÑ´Ù.
+     * @param dto Ä«¿îÆ® Á¤º¸¸¦ °¡Áö°í ÀÖ´Â Data Transfer Object
      */
     public void updateCount(CountDto dto) {
         scoreBoard.updateScoreBoard(dto);
@@ -81,10 +81,10 @@ public class HangManView extends JFrame {
     }
 
     /***
-     * ëˆ„ë¥¸ í‚¤ê°€ ì •ë‹µì´ì—ˆì„ ë•Œ ì—…ë°ì´íŠ¸ëœ ë¬¸ìì—´ì„ ê°±ì‹ í•˜ë©°,
-     * í‚¤ ì…ë ¥ì„ ë°›ëŠ” guessPanelì— ë§ëŠ” í‚¤ í‘œì‹œë¥¼ ìš”ì²­í•œë‹¤.
-     * @param maskingAnswer ì—…ë°ì´íŠ¸ ëœ ë¬¸ìì—´
-     * @param pressedButton ë³€ê²½í•  ë²„íŠ¼
+     * ´©¸¥ Å°°¡ Á¤´äÀÌ¾úÀ» ¶§ ¾÷µ¥ÀÌÆ®µÈ ¹®ÀÚ¿­À» °»½ÅÇÏ¸ç,
+     * Å° ÀÔ·ÂÀ» ¹Ş´Â guessPanel¿¡ ¸Â´Â Å° Ç¥½Ã¸¦ ¿äÃ»ÇÑ´Ù.
+     * @param maskingAnswer ¾÷µ¥ÀÌÆ® µÈ ¹®ÀÚ¿­
+     * @param pressedButton º¯°æÇÒ ¹öÆ°
      */
     public void updateCorrect(String maskingAnswer, JButton pressedButton) {
         hiddenString.updateHiddenString(maskingAnswer);
@@ -92,17 +92,17 @@ public class HangManView extends JFrame {
     }
 
     /***
-     * ëˆ„ë¥¸ í‚¤ê°€ ì •ë‹µì´ ì•„ë‹ ë•Œ guessPanelì— í‹€ë¦° í‚¤ í‘œì‹œë¥¼ ìš”ì²­í•œë‹¤.
-     * @param pressedButton ë³€ê²½í•  ë²„íŠ¼
+     * ´©¸¥ Å°°¡ Á¤´äÀÌ ¾Æ´Ò ¶§ guessPanel¿¡ Æ²¸° Å° Ç¥½Ã¸¦ ¿äÃ»ÇÑ´Ù.
+     * @param pressedButton º¯°æÇÒ ¹öÆ°
      */
     public void updateWrong(JButton pressedButton) {
         guessPanel.setWrongKey(pressedButton);
     }
 
     /***
-     * ì‚¬ìš©ìì—ê²Œ ê°„ë‹¨í•œ ì•Œë¦¼ì°½ì„ ì œê³µí•œë‹¤.
-     * @param title ì°½ ì œëª©
-     * @param message ì°½ ë©”ì‹œì§€
+     * »ç¿ëÀÚ¿¡°Ô °£´ÜÇÑ ¾Ë¸²Ã¢À» Á¦°øÇÑ´Ù.
+     * @param title Ã¢ Á¦¸ñ
+     * @param message Ã¢ ¸Ş½ÃÁö
      */
     public void alert(String title, String message) {
         JOptionPane.showMessageDialog(
