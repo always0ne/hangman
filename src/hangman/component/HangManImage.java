@@ -12,8 +12,8 @@ public class HangManImage extends JPanel {
     JLabel image;
 
     /***
-     * í–‰ë§¨ ì´ë¯¸ì§€ë¥¼ ë³´ì—¬ì£¼ëŠ” íŒ¨ë„ì´ë‹¤.
-     * ê°ì²´ê°€ ìƒì„±ë  ì‹œ images ë¦¬ìŠ¤íŠ¸ì— ëª¨ë“  ì´ë¯¸ì§€ë¥¼ ë¡œë“œ í•œ ìƒíƒœì—ì„œ ì´ë¯¸ì§€ë¥¼ ì¶œë ¥í•œë‹¤.
+     * Çà¸Ç ÀÌ¹ÌÁö¸¦ º¸¿©ÁÖ´Â ÆĞ³ÎÀÌ´Ù.
+     * °´Ã¼°¡ »ı¼ºµÉ ½Ã images ¸®½ºÆ®¿¡ ¸ğµç ÀÌ¹ÌÁö¸¦ ·Îµå ÇÑ »óÅÂ¿¡¼­ ÀÌ¹ÌÁö¸¦ Ãâ·ÂÇÑ´Ù.
      */
     public HangManImage() {
         images = new ArrayList<ImageIcon>();
@@ -29,8 +29,8 @@ public class HangManImage extends JPanel {
     }
 
     /***
-     * í‹€ë¦°íšŸìˆ˜ì— ë§ê²Œ ì´ë¯¸ì§€ë¥¼ ë³€ê²½
-     * @param num í‹€ë¦°íšŸìˆ˜
+     * Æ²¸°È½¼ö¿¡ ¸Â°Ô ÀÌ¹ÌÁö¸¦ º¯°æ
+     * @param num Æ²¸°È½¼ö
      */
     public void updateStep(int num) {
         image.setIcon(images.get(num));

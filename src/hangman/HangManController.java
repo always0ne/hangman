@@ -10,11 +10,11 @@ public class HangManController {
     private final HangManView hangManView;
 
     /***
-     * HangManControllerì˜ ìƒì„±ì.
-     * í”„ë¡œê·¸ë¨ì˜ ëª¨ë“  ì œì–´ë¥¼ ìœ„í•´ modelê³¼ viewë¥¼ ì „ë¶€ ì†Œìœ í•˜ë©°, ìœ ì¼í•´ì•¼í•˜ê¸°ë•Œë¬¸ì— ìƒì„±ìë¡œ ì£¼ì…ë°›ëŠ”ë‹¤.
-     * ë˜í•œ HangManView ê°ì²´ì˜ ì‚¬ìš©ì ì…ë ¥ ì¸í„°í˜ì´ìŠ¤ì¸ ë²„íŠ¼ì— ì´ë²¤íŠ¸ ë¦¬ìŠ¤ë„ˆë¥¼ ë“±ë¡í•œë‹¤.
-     * @param hangMan ê²Œì„ë¡œì§ì„ ë‹´ë‹¹í•˜ëŠ” HangMan ê°ì²´
-     * @param hangManView ê²Œì„ì˜ í™”ë©´ì„ ë‹´ë‹¹í•˜ëŠ” HangManView ê°ì²´
+     * HangManControllerÀÇ »ı¼ºÀÚ.
+     * ÇÁ·Î±×·¥ÀÇ ¸ğµç Á¦¾î¸¦ À§ÇØ model°ú view¸¦ ÀüºÎ ¼ÒÀ¯ÇÏ¸ç, À¯ÀÏÇØ¾ßÇÏ±â¶§¹®¿¡ »ı¼ºÀÚ·Î ÁÖÀÔ¹Ş´Â´Ù.
+     * ¶ÇÇÑ HangManView °´Ã¼ÀÇ »ç¿ëÀÚ ÀÔ·Â ÀÎÅÍÆäÀÌ½ºÀÎ ¹öÆ°¿¡ ÀÌº¥Æ® ¸®½º³Ê¸¦ µî·ÏÇÑ´Ù.
+     * @param hangMan °ÔÀÓ·ÎÁ÷À» ´ã´çÇÏ´Â HangMan °´Ã¼
+     * @param hangManView °ÔÀÓÀÇ È­¸éÀ» ´ã´çÇÏ´Â HangManView °´Ã¼
      */
     HangManController(HangMan hangMan, HangManView hangManView) {
         this.hangMan = hangMan;
@@ -24,8 +24,8 @@ public class HangManController {
     }
 
     /***
-     * ë¬¸ì œë¥¼ ì´ˆê¸°í™” í•˜ëŠ” ê¸°ëŠ¥
-     * hangMan ê°ì²´ì— ìƒˆë¡œìš´ ë‹¨ì–´ ì´ˆê¸°í™”ë¥¼ ìš”ì²­í•œ í›„, Viewì— ë°˜ì˜í•œë‹¤.
+     * ¹®Á¦¸¦ ÃÊ±âÈ­ ÇÏ´Â ±â´É
+     * hangMan °´Ã¼¿¡ »õ·Î¿î ´Ü¾î ÃÊ±âÈ­¸¦ ¿äÃ»ÇÑ ÈÄ, View¿¡ ¹İ¿µÇÑ´Ù.
      */
     private void initNewWord() {
         hangManView.initNewWord(hangMan.initNewWord());
@@ -33,10 +33,10 @@ public class HangManController {
     }
 
     /***
-     * hangMan ê°ì²´ì— ì •ë‹µì„ ì œì¶œí•˜ëŠ” ì—­í• ìš¸ í•œë‹¤.
-     * keyBtnListenerê°€ ë²„íŠ¼ ì…ë ¥ì„ ê°ì§€í•˜ì—¬ í˜¸ì¶œí•œë‹¤.
-     * ì •ë‹µì—¬ë¶€ë¥¼ í™•ì¸í•œ í›„, Viewë¥¼ ì—…ë°ì´íŠ¸ í•˜ë©°, ë‹¤ìŒë‹¨ì–´ë¡œ ë„˜ì–´ê°€ëŠ”ì§€ í™•ì¸í•œ í›„ ê²Œì„ì´ ëë‚˜ëŠì§€ í™•ì¸í•œë‹¤.
-     * @param pressedButton ì…ë ¥ëœ ë²„íŠ¼
+     * hangMan °´Ã¼¿¡ Á¤´äÀ» Á¦ÃâÇÏ´Â ¿ªÇÒ¿ï ÇÑ´Ù.
+     * keyBtnListener°¡ ¹öÆ° ÀÔ·ÂÀ» °¨ÁöÇÏ¿© È£ÃâÇÑ´Ù.
+     * Á¤´ä¿©ºÎ¸¦ È®ÀÎÇÑ ÈÄ, View¸¦ ¾÷µ¥ÀÌÆ® ÇÏ¸ç, ´ÙÀ½´Ü¾î·Î ³Ñ¾î°¡´ÂÁö È®ÀÎÇÑ ÈÄ °ÔÀÓÀÌ ³¡³ª´ÀÁö È®ÀÎÇÑ´Ù.
+     * @param pressedButton ÀÔ·ÂµÈ ¹öÆ°
      */
     private void submitAnswer(JButton pressedButton) {
         boolean correct = hangMan.checkAnswer(pressedButton.getText().charAt(0));
@@ -46,10 +46,10 @@ public class HangManController {
     }
 
     /***
-     * ì •ë‹µ ì œì¶œ í›„ í™”ë©´ì„ ì—…ë°ì´íŠ¸ í•˜ëŠ” ë©”ì†Œë“œì´ë‹¤.
-     * ìƒí™©ì— ë§ê²Œ viewì— ì—…ë°ì´íŠ¸ ìš”ì²­ì„ í•œ í›„, ì¹´ìš´íŠ¸ë¥¼ ì—…ë°ì´íŠ¸ í•œë‹¤.
-     * @param correct ì •ë‹µì—¬ë¶€
-     * @param pressedButton ì…ë ¥ëœ ë²„íŠ¼
+     * Á¤´ä Á¦Ãâ ÈÄ È­¸éÀ» ¾÷µ¥ÀÌÆ® ÇÏ´Â ¸Ş¼ÒµåÀÌ´Ù.
+     * »óÈ²¿¡ ¸Â°Ô view¿¡ ¾÷µ¥ÀÌÆ® ¿äÃ»À» ÇÑ ÈÄ, Ä«¿îÆ®¸¦ ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+     * @param correct Á¤´ä¿©ºÎ
+     * @param pressedButton ÀÔ·ÂµÈ ¹öÆ°
      */
     private void updateView(boolean correct, JButton pressedButton) {
         if (correct)
@@ -62,35 +62,35 @@ public class HangManController {
     }
 
     /***
-     * HangMan ê°ì²´ì— ìš”ì²­í•˜ì—¬ ë‹¨ì–´ê°€ ì™„ì„±ë˜ê±°ë‚˜ ì‹¤íŒ¨íšŸìˆ˜ë¥¼ ë„˜ê²¨ì„œ ë‹¤ìŒë‹¨ì–´ë¡œ ë„˜ì–´ê°€ë„ ë˜ëŠ”ì§€ í™•ì¸í•œë‹¤.
-     * ë§Œì•½ ë‹¤ìŒ ë‹¨ì–´ë¡œ ë„˜ì–´ê°€ëŠ” ìƒí™©ì´ë©´ ì„±ê³µê³¼ ì‹¤íŒ¨ì—¬ë¶€ë¥¼ ì•Œë¦¼ì°½ìœ¼ë¡œ ë„ìš°ëŠ” ìš”ì²­ì„ í•œ í›„
-     * ìƒˆë¡œìš´ ë‹¨ì–´ë¡œ ì´ˆê¸°í™” í•œë‹¤.
-     * @param correct ì •ë‹µì—¬ë¶€
+     * HangMan °´Ã¼¿¡ ¿äÃ»ÇÏ¿© ´Ü¾î°¡ ¿Ï¼ºµÇ°Å³ª ½ÇÆĞÈ½¼ö¸¦ ³Ñ°Ü¼­ ´ÙÀ½´Ü¾î·Î ³Ñ¾î°¡µµ µÇ´ÂÁö È®ÀÎÇÑ´Ù.
+     * ¸¸¾à ´ÙÀ½ ´Ü¾î·Î ³Ñ¾î°¡´Â »óÈ²ÀÌ¸é ¼º°ø°ú ½ÇÆĞ¿©ºÎ¸¦ ¾Ë¸²Ã¢À¸·Î ¶ç¿ì´Â ¿äÃ»À» ÇÑ ÈÄ
+     * »õ·Î¿î ´Ü¾î·Î ÃÊ±âÈ­ ÇÑ´Ù.
+     * @param correct Á¤´ä¿©ºÎ
      */
     private void checkGoNextWord(boolean correct) {
         if (hangMan.checkGoNextWord()) {
             if (correct)
-                hangManView.alert("ë¬¸ì œ ë§ì¶¤", "ë§ì·„ìŠµë‹ˆë‹¤. ë‹¤ìŒ ë¬¸ì œë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤.");
+                hangManView.alert("¹®Á¦ ¸ÂÃã", "¸ÂÃè½À´Ï´Ù. ´ÙÀ½ ¹®Á¦·Î ³Ñ¾î°©´Ï´Ù.");
             else
-                hangManView.alert("ë¬¸ì œ í‹€ë¦¼", "ê¸°íšŒë¥¼ ëª¨ë‘ ì†Œì§„í–ˆìŠµë‹ˆë‹¤. ë‹¤ìŒ ë¬¸ì œë¡œ ë„˜ì–´ê°‘ë‹ˆë‹¤.");
+                hangManView.alert("¹®Á¦ Æ²¸²", "±âÈ¸¸¦ ¸ğµÎ ¼ÒÁøÇß½À´Ï´Ù. ´ÙÀ½ ¹®Á¦·Î ³Ñ¾î°©´Ï´Ù.");
             initNewWord();
         }
     }
 
     /***
-     * HangMan ê°ì²´ì— ìš”ì²­í•˜ì—¬ ê²Œì„ì˜ ì¢…ë£Œë˜ì–´ì•¼ í•˜ëŠ”ì§€ í™•ì¸í•œë‹¤.
-     * ê²Œì„ì´ ì¢…ë£Œë˜ì–´ì•¼ í•˜ë©´ ì•Œë¦¼ì°½ì„ ë„ìš´ í›„ í•´ë‹¹ì°½ì´ ë‹«ì•„ì§€ë©´ ê²Œì„ì´ ì¢…ë£Œëœë‹¤.
+     * HangMan °´Ã¼¿¡ ¿äÃ»ÇÏ¿© °ÔÀÓÀÇ Á¾·áµÇ¾î¾ß ÇÏ´ÂÁö È®ÀÎÇÑ´Ù.
+     * °ÔÀÓÀÌ Á¾·áµÇ¾î¾ß ÇÏ¸é ¾Ë¸²Ã¢À» ¶ç¿î ÈÄ ÇØ´çÃ¢ÀÌ ´İ¾ÆÁö¸é °ÔÀÓÀÌ Á¾·áµÈ´Ù.
      */
     private void checkIsGameEnd() {
         if (hangMan.isGameEnd()) {
-            hangManView.alert("ê²Œì„ ë", "ê²Œì„ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+            hangManView.alert("°ÔÀÓ ³¡", "°ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù.");
             System.exit(0);
         }
     }
 
     /***
-     * í‚¤ ë²„íŠ¼ ì•¡ì…˜ ë¦¬ìŠ¤ë„ˆ
-     * ë²„íŠ¼ì´ ì‘ë™ë˜ì—ˆì„ë•Œì˜ ì´ë²¤íŠ¸ë¥¼ ê°ì§€í•˜ëŠ” ì—­í• ì„ í•œë‹¤.
+     * Å° ¹öÆ° ¾×¼Ç ¸®½º³Ê
+     * ¹öÆ°ÀÌ ÀÛµ¿µÇ¾úÀ»¶§ÀÇ ÀÌº¥Æ®¸¦ °¨ÁöÇÏ´Â ¿ªÇÒÀ» ÇÑ´Ù.
      */
     private class keyBtnListener implements ActionListener {
         @Override

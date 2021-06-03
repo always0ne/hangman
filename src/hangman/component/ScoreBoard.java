@@ -15,8 +15,8 @@ public class ScoreBoard extends JPanel {
     private final JLabel failCountLabel;
 
     /***
-     * ì ìˆ˜íŒì„ ì¶œë ¥í•˜ëŠ” íŒ¨ë„ì´ë‹¤.
-     * boxë¥¼ ì‚¬ìš©í•˜ì—¬ ë ˆì´ì•„ì›ƒì„ ì¡ì•˜ë‹¤.
+     * Á¡¼öÆÇÀ» Ãâ·ÂÇÏ´Â ÆĞ³ÎÀÌ´Ù.
+     * box¸¦ »ç¿ëÇÏ¿© ·¹ÀÌ¾Æ¿ôÀ» Àâ¾Ò´Ù.
      */
     public ScoreBoard() {
         setBackground(new Color(201, 181, 84));
@@ -52,8 +52,8 @@ public class ScoreBoard extends JPanel {
     }
 
     /***
-     * ì ìˆ˜ì •ë³´ë¥¼ í™”ë©´ì— ë°˜ì˜í•œë‹¤.
-     * @param dto ì ìˆ˜ ì •ë³´
+     * Á¡¼öÁ¤º¸¸¦ È­¸é¿¡ ¹İ¿µÇÑ´Ù.
+     * @param dto Á¡¼ö Á¤º¸
      */
     public void updateScoreBoard(CountDto dto) {
         successCountLabel.setText(String.valueOf(dto.getSuccessCount()));
