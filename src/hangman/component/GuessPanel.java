@@ -11,8 +11,8 @@ public class GuessPanel extends JPanel {
     public static JButton[] letters = new JButton[52];
 
     /***
-     * í‚¤ ì…ë ¥ì„ ë°›ëŠ” í™”ë©´ì´ë‹¤.
-     * aë¶€í„° zê¹Œì§€ ë²„íŠ¼ì„ ìƒì„±í•œë‹¤.
+     * Å° ÀÔ·ÂÀ» ¹Ş´Â È­¸éÀÌ´Ù.
+     * aºÎÅÍ z±îÁö ¹öÆ°À» »ı¼ºÇÑ´Ù.
      */
     public GuessPanel() {
         int k = 0;
@@ -28,8 +28,8 @@ public class GuessPanel extends JPanel {
     }
 
     /***
-     * ëª¨ë“  í‚¤ ë²„íŠ¼ì— ì•¡ì…˜ë¦¬ìŠ¤ë„ˆë¥¼ ë“±ë¡í•œë‹¤.
-     * @param actionListener ì•¡ì…˜ ë¦¬ìŠ¤ë„ˆ
+     * ¸ğµç Å° ¹öÆ°¿¡ ¾×¼Ç¸®½º³Ê¸¦ µî·ÏÇÑ´Ù.
+     * @param actionListener ¾×¼Ç ¸®½º³Ê
      */
     public void setKeyAction(ActionListener actionListener) {
         try {
@@ -41,7 +41,7 @@ public class GuessPanel extends JPanel {
     }
 
     /***
-     * ë²„íŠ¼ì˜ ë°°ê²½ìƒ‰ì„ ì •ìƒìœ¼ë¡œ ë°”ê¾¼ í›„, ë¹„í™œì„±í™”ëœ ë²„íŠ¼ì„ ì „ë¶€ ë‹¤ì‹œ í™œì„±í™” í•œë‹¤.
+     * ¹öÆ°ÀÇ ¹è°æ»öÀ» Á¤»óÀ¸·Î ¹Ù²Û ÈÄ, ºñÈ°¼ºÈ­µÈ ¹öÆ°À» ÀüºÎ ´Ù½Ã È°¼ºÈ­ ÇÑ´Ù.
      */
     public void reset() {
         try {
@@ -54,8 +54,8 @@ public class GuessPanel extends JPanel {
     }
 
     /***
-     * ì •ë‹µì¸ í‚¤ëŠ” ì´ˆë¡ìƒ‰ìœ¼ë¡œ ìƒ‰ì„ ë³€ê²½í•˜ë©°, ë¹„í™œì„±í™” í•œë‹¤.
-     * @param pressedButton ì •ë‹µì¸ í‚¤ ë²„íŠ¼
+     * Á¤´äÀÎ Å°´Â ÃÊ·Ï»öÀ¸·Î »öÀ» º¯°æÇÏ¸ç, ºñÈ°¼ºÈ­ ÇÑ´Ù.
+     * @param pressedButton Á¤´äÀÎ Å° ¹öÆ°
      */
     public void setCorrectKey(JButton pressedButton) {
         pressedButton.setBackground(Color.GREEN);
@@ -63,8 +63,8 @@ public class GuessPanel extends JPanel {
     }
 
     /***
-     * í‹€ë¦° í‚¤ëŠ” ë¹¨ê°„ìƒ‰ìœ¼ë¡œ ìƒ‰ì„ ë³€ê²½í•˜ë©°, ë¹„í™œì„±í™” í•œë‹¤.
-     * @param pressedButton ì‹¤íŒ¨í•œ ë²„íŠ¼
+     * Æ²¸° Å°´Â »¡°£»öÀ¸·Î »öÀ» º¯°æÇÏ¸ç, ºñÈ°¼ºÈ­ ÇÑ´Ù.
+     * @param pressedButton ½ÇÆĞÇÑ ¹öÆ°
      */
     public void setWrongKey(JButton pressedButton) {
         pressedButton.setBackground(Color.RED);

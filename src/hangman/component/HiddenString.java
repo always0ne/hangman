@@ -10,7 +10,7 @@ public class HiddenString extends JPanel {
     private final JLabel hiddenString;
 
     /***
-     * ë¬¸ì œ ë¬¸ìì—´ì„ ì¶œë ¥í•˜ëŠ” íŒ¨ë„ì´ë‹¤.
+     * ¹®Á¦ ¹®ÀÚ¿­À» Ãâ·ÂÇÏ´Â ÆĞ³ÎÀÌ´Ù.
      */
     public HiddenString() {
         setBackground(new Color(201, 181, 84));
@@ -20,8 +20,8 @@ public class HiddenString extends JPanel {
     }
 
     /***
-     * ë¬¸ì œ ë¬¸ìì—´ì„ ì—…ë°ì´íŠ¸ í•œë‹¤.
-     * @param newString ìƒˆë¡œìš´ ë¬¸ìì—´
+     * ¹®Á¦ ¹®ÀÚ¿­À» ¾÷µ¥ÀÌÆ® ÇÑ´Ù.
+     * @param newString »õ·Î¿î ¹®ÀÚ¿­
      */
     public void updateHiddenString(String newString) {
         this.hiddenString.setText(newString);

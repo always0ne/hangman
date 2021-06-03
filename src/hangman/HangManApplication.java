@@ -3,11 +3,11 @@ package hangman;
 public class HangManApplication {
 
     /***
-     * HangManì€ MVC êµ¬ì¡°ë¡œ ì´ë£¨ì–´ì ¸ ìˆìœ¼ë©°,
-     * ê²Œì„ ë¡œì§ì€ HangManì´ ë‹´ë‹¹í•˜ê³ .(Model)
-     * í”„ë¡œê·¸ë¨ì˜ í™”ë©´ì€ HangManViewê°€ ë‹´ë‹¹í•˜ë©°,(View)
-     * í”„ë¡œê·¸ë¨ì˜ ëª¨ë“  ì œì–´ëŠ” HangManControllerê°€ ë‹´ë‹¹í•œë‹¤.(Controller)
-     * Applicationì€ ì‹œì‘ì‹œ HangMan ê°ì²´ì™€ HangManView ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ HangmanControllerë¥¼ ìƒì„± í•œë‹¤.
+     * HangManÀº MVC ±¸Á¶·Î ÀÌ·ç¾îÁ® ÀÖÀ¸¸ç,
+     * °ÔÀÓ ·ÎÁ÷Àº HangManÀÌ ´ã´çÇÏ°í.(Model)
+     * ÇÁ·Î±×·¥ÀÇ È­¸éÀº HangManView°¡ ´ã´çÇÏ¸ç,(View)
+     * ÇÁ·Î±×·¥ÀÇ ¸ğµç Á¦¾î´Â HangManController°¡ ´ã´çÇÑ´Ù.(Controller)
+     * ApplicationÀº ½ÃÀÛ½Ã HangMan °´Ã¼¿Í HangManView °´Ã¼¸¦ »ı¼ºÇÏ¿© HangmanController¸¦ »ı¼º ÇÑ´Ù.
      * @param args
      */
     public static void main(String[] args) {
