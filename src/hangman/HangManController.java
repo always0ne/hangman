@@ -70,9 +70,9 @@ public class HangManController {
     private void checkGoNextWord(boolean correct) {
         if (hangMan.checkGoNextWord()) {
             if (correct)
-                hangManView.alert("���� ����", "������ϴ�. ���� ������ �Ѿ�ϴ�.");
+                hangManView.alert("문제 맞춤", "맞췄습니다. 다음 문제로 넘어갑니다.");
             else
-                hangManView.alert("���� Ʋ��", "��ȸ�� ��� �����߽��ϴ�. ���� ������ �Ѿ�ϴ�.");
+                hangManView.alert("문제 틀림", "기회를 모두 소진했습니다. 다음 문제로 넘어갑니다.");
             initNewWord();
         }
     }
@@ -83,7 +83,7 @@ public class HangManController {
      */
     private void checkIsGameEnd() {
         if (hangMan.isGameEnd()) {
-            hangManView.alert("���� ��", "������ �����մϴ�.");
+            hangManView.alert("게임 끝", "게임을 종료합니다.");
             System.exit(0);
         }
     }
