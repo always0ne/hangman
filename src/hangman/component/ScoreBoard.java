@@ -14,6 +14,10 @@ public class ScoreBoard extends JPanel {
     private final JLabel successCountLabel;
     private final JLabel failCountLabel;
 
+    /***
+     * 점수판을 출력하는 패널이다.
+     * box를 사용하여 레이아웃을 잡았다.
+     */
     public ScoreBoard() {
         setBackground(new Color(201, 181, 84));
         setOpaque(true);
@@ -47,6 +51,10 @@ public class ScoreBoard extends JPanel {
         add(box);
     }
 
+    /***
+     * 점수정보를 화면에 반영한다.
+     * @param dto 점수 정보
+     */
     public void updateScoreBoard(CountDto dto) {
         successCountLabel.setText(String.valueOf(dto.getSuccessCount()));
         failCountLabel.setText(String.valueOf(dto.getFailCount()));

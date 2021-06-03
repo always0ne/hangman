@@ -88,6 +88,10 @@ public class HangManController {
         }
     }
 
+    /***
+     * 키 버튼 액션 리스너
+     * 버튼이 작동되었을때의 이벤트를 감지하는 역할을 한다.
+     */
     private class keyBtnListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
